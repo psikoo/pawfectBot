@@ -1,0 +1,5 @@
+services:
+  bot:
+    container_name: pawfect-bot
+    image: pawfect-bot:1
+    restart: always
