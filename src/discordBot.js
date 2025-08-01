@@ -1,10 +1,13 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
-require('dotenv').config()
+const { Client, Collection, Events, GatewayIntentBits, version, EmbedBuilder } = require("discord.js");
+require("dotenv").config()
+
+const customRole = require("./modal/customRole.js");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+console.log("Discord.js version: "+version);
 console.log("> --------------------------------- <");
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
@@ -34,7 +37,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {
-		console.error(`🟥 ${interaction.commandName} doesn't exist`);
+		console.error(`🟥 ${interaction.commandName} doesn"t exist`);
 		return;
 	}
 
@@ -47,6 +50,20 @@ client.on(Events.InteractionCreate, async interaction => {
 		} else {
 			await interaction.reply({ content: "🟥 Error executing command", ephemeral: true });
 		}
+	}
+});
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isModalSubmit()) return;
+	if (interaction.customId === "customRoleModal") {
+		await customRole.updateCustomRole(interaction);
+		const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
+  	const colorRole = interactionUser.roles.color;
+		const response = new EmbedBuilder()
+			.setColor(0x00FF00)
+			.setTitle("🟩 Success")
+			.setDescription(`Your role <@&${colorRole.id}> was updated!`)
+		await interaction.reply({ embeds: [response] });
 	}
 });
 

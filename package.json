@@ -1,17 +1,16 @@
 {
   "name": "pawfectBot",
   "version": "1.0.0",
-  "description": "A bot to fetch a routers public ip",
+  "description": "the pawfect bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "psikoo",
+  "author": "cait",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.7",
-    "discord.js": "^14.16.3",
-    "dotenv": "^16.4.7",
-    "pawfectBot": "file:"
+    "axios": "^1.11.0",
+    "discord.js": "^14.21.0",
+    "dotenv": "^16.4.7"
   }
 }

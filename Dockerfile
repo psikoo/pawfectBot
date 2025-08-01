@@ -4,7 +4,6 @@ RUN mkdir -p /usr/src/pawfectBot
 WORKDIR /usr/src/pawfectBot
 
 COPY package.json /usr/src/pawfectBot
-RUN npm install
 
 COPY . /usr/src/pawfectBot
 

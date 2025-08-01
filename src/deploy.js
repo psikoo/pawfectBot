@@ -1,7 +1,7 @@
 const { REST, Routes } = require("discord.js");
 const fs = require("node:fs");
 const path = require("node:path");
-require('dotenv').config()
+require("dotenv").config()
 
 const commands = [];
 const foldersPath = path.join(__dirname, "commands");
@@ -21,7 +21,7 @@ for (const folder of commandFolders) {
 	}
 }
 
-const rest = new REST().setToken(process.env.BOT_TOKEN);
+const rest = new REST({ version: "10" }).setToken(process.env.BOT_TOKEN);
 
 (async () => {
 	try {
