@@ -8,9 +8,16 @@ module.exports = {
 			.setName("message")
 			.setDescription("Message to echo")
 			.setRequired(true))
+		.addStringOption(option => option
+			.setName("reply")
+			.setDescription("Url of a message to which the bot should reply to"))
 		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction) {
 		await interaction.reply({ content: "Sending...", flags: MessageFlags.Ephemeral });
-		await interaction.channel.send(interaction.options.getString("message"));
+		if(interaction.options.getString("reply")) {
+			await interaction.channel.send({ content: interaction.options.getString("message"), reply: { messageReference: interaction.options.getString("reply").split("/")[interaction.options.getString("reply").split("/").length-1] } });
+		} else {
+			await interaction.channel.send(interaction.options.getString("message"));
+		}
 	},
 };
