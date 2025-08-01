@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, MessageFlags } = require("discord.js");
+const { SlashCommandBuilder, MessageFlags, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -7,7 +7,8 @@ module.exports = {
 		.addStringOption(option => option
 			.setName("message")
 			.setDescription("Message to echo")
-			.setRequired(true)),
+			.setRequired(true))
+		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction) {
 		await interaction.reply({ content: "Sending...", flags: MessageFlags.Ephemeral });
 		await interaction.channel.send(interaction.options.getString("message"));
