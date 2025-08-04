@@ -6,8 +6,8 @@ module.exports = {
 		.setDescription("Customize color role"),
 	async execute(interaction) {
 		const interactionUser = await interaction.guild.members.fetch(interaction.user.id);
-		const customRole = await interactionUser.roles.color;
-		if(customRole.name.includes(interactionUser.id)) {
+		const colorRole = await interactionUser.roles.color;
+		if(colorRole.name.includes(interactionUser.id)) {
 			const modal = new ModalBuilder()
 				.setCustomId("customRoleModal")
 				.setTitle("Edit your custom role");
@@ -18,7 +18,7 @@ module.exports = {
 				.setStyle(TextInputStyle.Short)
 				.setMaxLength(20)
 				.setPlaceholder("your cool and epic name!")
-				.setValue(customRole.name.substring(0,customRole.name.length-21))
+				.setValue(colorRole.name.substring(0,colorRole.name.length-21))
 				.setRequired(true);
 			const Color1 = new TextInputBuilder()
 				.setCustomId("Color1")
@@ -47,7 +47,7 @@ module.exports = {
 			const response = new EmbedBuilder()
 				.setColor(0xFF0000)
 				.setTitle("🟥 Error")
-				.setDescription(`🚫 Your color role isn"t customizable`)
+				.setDescription("🚫 Your color role isn't customizable")
 			await interaction.reply({ embeds: [response], flags: MessageFlags.Ephemeral });
 		}
 	},
