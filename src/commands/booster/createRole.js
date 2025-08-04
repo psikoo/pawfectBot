@@ -35,7 +35,7 @@ module.exports = {
         .setColor(0x00FF00)
         .setTitle("🟩 Success")
         .setDescription("Your role <@&"+customRole.id+"> has been created! Use /customrole to manage it")
-      await interaction.reply({ embeds: [response], flags: MessageFlags.Ephemeral });
+      await interaction.reply({ embeds: [response] });
     } 
     else {
       const response = new EmbedBuilder()
