@@ -8,14 +8,14 @@ module.exports = {
 		const interactionUser = await interaction.guild.members.fetch(interaction.user.id);
 		const colorRole = await interactionUser.roles.color;
 
-    if(!interactionUser.premiumSince){
+    if(!interactionUser.premiumSince) {
       const response = new EmbedBuilder()
         .setColor(0xFF0000)
         .setTitle("🟥 Error")
         .setDescription("🚫 You need to be a booster to create a customizable role")
       await interaction.reply({ embeds: [response], flags: MessageFlags.Ephemeral });
     } 
-    else if(colorRole.name.includes(interactionUser.id)){
+    else if(colorRole.name.includes(interactionUser.id)) {
       const response = new EmbedBuilder()
         .setColor(0xFF0000)
         .setTitle("🟥 Error")
