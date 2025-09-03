@@ -17,13 +17,7 @@ module.exports = {
 		let targetUser = interaction.options.getMember("user");
 		let muteTime = interaction.options.getNumber("time");
 
-		if(targetUser === null) {
-			const response = new EmbedBuilder()
-				.setColor(0xFF0000)
-				.setTitle("🟥 Error")
-				.setDescription("🚫 This user is not part of this server!")
-			interaction.reply({embeds: [response]});
-		} else if(!targetUser.manageable) {
+  if(!targetUser.manageable) {
 			const response = new EmbedBuilder()
 				.setColor(0xFF0000)
 				.setTitle("🟥 Error")

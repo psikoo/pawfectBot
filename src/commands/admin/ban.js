@@ -19,14 +19,8 @@ module.exports = {
 		let targetUser = interaction.options.getMember("user");
 		let keepMessages = interaction.options.getBoolean("keep");
 		let banReason = interaction.options.getString("reason");
-
-		if(targetUser === null) {
-			const response = new EmbedBuilder()
-				.setColor(0xFF0000)
-				.setTitle("🟥 Error")
-				.setDescription("🚫 This user is not part of this server!")
-			interaction.reply({embeds: [response]});
-		} else if(!targetUser.bannable) {
+		
+		if(!targetUser.bannable) {
 			const response = new EmbedBuilder()
 				.setColor(0xFF0000)
 				.setTitle("🟥 Error")
