@@ -17,13 +17,11 @@ module.exports = {
 		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction) {
 		let targetUser = interaction.options.getMember("user");
-		let targetId = interaction.options.getString("user");
 		let keepMessages = interaction.options.getBoolean("keep");
 		let banReason = interaction.options.getString("reason");
 
 		if(targetUser === null) {
 			console.log(targetUser)
-			console.log(targetId)
 			interaction.guild.members.ban(targetUser.user.id);
 			const response = new EmbedBuilder()
 				.setColor(0x00FF00)
