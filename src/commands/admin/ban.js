@@ -24,7 +24,7 @@ module.exports = {
 		let banReason = interaction.options.getString("reason");
 
 		if(targetUser === null) {
-			interaction.guild.members.ban(id);
+			interaction.guild.members.ban(targetId);
 			const response = new EmbedBuilder()
 				.setColor(0x00FF00)
 				.setTitle("🟩 Success")
