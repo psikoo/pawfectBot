@@ -6,8 +6,10 @@ module.exports = {
 		.setDescription("Ban a user")
 		.addUserOption(option => option
 			.setName("user")
-			.setDescription("User to ban")
-			.setRequired(true))
+			.setDescription("User to ban"))
+		.addStringOption(option => option
+			.setName("id")
+			.setDescription("Id to ban"))
 		.addBooleanOption(option => option
 			.setName("keep")
 			.setDescription("Keep the messages from the user"))
@@ -17,12 +19,12 @@ module.exports = {
 		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction) {
 		let targetUser = interaction.options.getMember("user");
+		let targetId = interaction.options.getString("id");
 		let keepMessages = interaction.options.getBoolean("keep");
 		let banReason = interaction.options.getString("reason");
 
 		if(targetUser === null) {
-			console.log(targetUser)
-			interaction.guild.members.ban(targetUser.user.id);
+			interaction.guild.members.ban(id);
 			const response = new EmbedBuilder()
 				.setColor(0x00FF00)
 				.setTitle("🟩 Success")
