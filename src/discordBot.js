@@ -42,7 +42,9 @@ client.on(Events.InteractionCreate, async interaction => {
 		.setTitle("🟩 Success")
 		.setDescription(`Your role <@&${colorRole.id}> was updated! \n #${colorRole.color.toString(16).padStart(6, "0")}`)
 		await interaction.reply({ embeds: [response] });
+		return;
 	}
+	
 	else {
 		if (interaction.isChatInputCommand()) return;
 		const command = interaction.client.commands.get(interaction.commandName);
