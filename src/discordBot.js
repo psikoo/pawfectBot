@@ -33,32 +33,37 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 client.on(Events.InteractionCreate, async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+	const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`🟥 ${interaction.commandName} doesn"t exist`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: "🟥 Error executing command", ephemeral: true });
+		} else {
+			await interaction.reply({ content: "🟥 Error executing command", ephemeral: true });
+		}
+	}
+});
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isModalSubmit()) return;
 	if (interaction.customId === "customRoleModal") {
 		await customRole.updateCustomRole(interaction);
 		const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
   	const colorRole = interactionUser.roles.color;
 		const response = new EmbedBuilder()
-		.setColor(0x00FF00)
-		.setTitle("🟩 Success")
-		.setDescription(`Your role <@&${colorRole.id}> was updated! \n #${colorRole.color.toString(16).padStart(6, "0")}`)
+			.setColor(0x00FF00)
+			.setTitle("🟩 Success")
+			.setDescription(`Your role <@&${colorRole.id}> was updated!`)
 		await interaction.reply({ embeds: [response] });
-		return;
-	}
-	
-	else {
-		if (interaction.isChatInputCommand()) return;
-		const command = interaction.client.commands.get(interaction.commandName);
-		if (!command) return;
-		try {
-			await command.execute(interaction);
-		} catch (error) {
-			console.error(error);
-			if (interaction.replied || interaction.deferred) {
-				await interaction.followUp({ content: "🟥 Error executing command", ephemeral: true });
-			} else {
-				await interaction.reply({ content: "🟥 Error executing command", ephemeral: true });
-			}
-		}
 	}
 });
 
