@@ -1,12 +1,14 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, Events, GatewayIntentBits, version, EmbedBuilder } = require("discord.js");
+const { Client, Collection, Events, GatewayIntentBits, version } = require("discord.js");
 require("dotenv").config()
 
-const customRole = require("./modal/customRole.js");
+const modal = require("./handleModal.js");
+const command = require("./handleCommand.js");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+// Command Status
 console.log("Discord.js version: "+version);
 console.log("> --------------------------------- <");
 client.commands = new Collection();
@@ -33,38 +35,8 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 client.on(Events.InteractionCreate, async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-	const command = interaction.client.commands.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`🟥 ${interaction.commandName} doesn"t exist`);
-		return;
-	}
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: "🟥 Error executing command", ephemeral: true });
-		} else {
-			await interaction.reply({ content: "🟥 Error executing command", ephemeral: true });
-		}
-	}
-});
-
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isModalSubmit()) return;
-	if (interaction.customId === "customRoleModal") {
-		await customRole.updateCustomRole(interaction);
-		const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
-  	const colorRole = interactionUser.roles.color;
-		const response = new EmbedBuilder()
-			.setColor(0x00FF00)
-			.setTitle("🟩 Success")
-			.setDescription(`Your role <@&${colorRole.id}> was updated!`)
-		await interaction.reply({ embeds: [response] });
-	}
+	if (interaction.isModalSubmit()) modal.handleModal(interaction);
+  else if (interaction.isChatInputCommand()) command.handleCommand(interaction);
 });
 
 client.login(process.env.BOT_TOKEN);
