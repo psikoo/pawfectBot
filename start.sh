@@ -3,4 +3,4 @@ sudo git stash
 sudo git pull
 sudo chmod +x ./start.sh
 sudo docker build -t pawfect-bot:1 .
-sudo docker restart pawfec-bot
+sudo docker restart pawfect-bot
