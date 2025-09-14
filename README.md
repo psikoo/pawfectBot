@@ -11,20 +11,11 @@ pawfectBot is a simple Discord.js bot created following Discord.js [guide](https
 BOT_TOKEN=""
 BOT_CLIENT_ID=""
 BOT_GUILD_ID=""
-#SSH
-USERNAME=""
-LOCAL_IP=""
-PORT=""
-#PORKBUN
-DOMAIN=""
-API_URL=""
-KEY=""
-SECRET=""
 ```
 - Get your BOT_TOKEN and BOT_CLIENT_ID [here](https://discord.com/developers/applications).
 
 To start the bot just do:
 
 ```bash
-sudo ./stat.sh
+sudo ./start.sh
 ```
