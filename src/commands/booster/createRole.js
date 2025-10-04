@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, MessageFlags, PermissionFlagsBits, Colors } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -25,7 +25,7 @@ module.exports = {
     else if(interactionUser.premiumSince && !colorRole.name.includes(interactionUser.id)) {
       customRole = await interaction.guild.roles.create({
         name: interactionUser.nickname+" ["+interactionUser.id+"]",
-        color: "f47fff",
+        colors: { primaryColor: "f47fff" },
         hoist: false,
         position: 35,
         mentionable: false,
