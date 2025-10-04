@@ -3,10 +3,16 @@ const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits, version } = require("discord.js");
 require("dotenv").config()
 
-const modal = require("./handleModal.js");
-const command = require("./handleCommand.js");
+const { handleModal } = require("./handleModal.js");
+const { handleCommand} = require("./handleCommand.js");
+const { handleMessage } = require("./handleMessage.js");
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents:[ 
+  GatewayIntentBits.DirectMessages,
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.MessageContent
+]});
 
 // Command Status
 console.log("Discord.js version: "+version);
@@ -34,9 +40,11 @@ client.once(Events.ClientReady, readyClient => {
 	console.log(`🟩 Session started: ${readyClient.user.tag}`);
 });
 
+client.on(Events.MessageCreate, async message => { handleMessage(message); });
+
 client.on(Events.InteractionCreate, async interaction => {
-	if (interaction.isModalSubmit()) modal.handleModal(interaction);
-  else if (interaction.isChatInputCommand()) command.handleCommand(interaction);
+	if (interaction.isModalSubmit()) handleModal(interaction);
+  else if (interaction.isChatInputCommand()) handleCommand(interaction);
 });
 
 client.login(process.env.BOT_TOKEN);
