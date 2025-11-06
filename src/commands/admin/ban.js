@@ -29,7 +29,7 @@ module.exports = {
 					.setColor(0x00FF00)
 					.setTitle("⚠ Killfaggot")
 					.setDescription("OwO, what faggot should I kill!")
-					.setImage("https://tenor.com/view/angry-cat-gif-25783770")
+					.setImage("https://i.imgur.com/g5C3kq9.gif")
 				interaction.reply({embeds: [response]});
 			} else {
 				if(keepMessages == true || !keepMessages) keepMessages = 0;
