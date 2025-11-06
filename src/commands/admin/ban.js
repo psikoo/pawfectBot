@@ -24,15 +24,24 @@ module.exports = {
 		let banReason = interaction.options.getString("reason");
 
 		if(targetUser === null) {
-			if(keepMessages == true || !keepMessages) keepMessages = 0;
-			else keepMessages = 604800;
-			interaction.guild.members.ban(targetId, { reason: banReason, deleteMessageSeconds: keepMessages });
-			const response = new EmbedBuilder()
-				.setColor(0x00FF00)
-				.setTitle("🟩 Success")
-				.setDescription("⛔ banned <@"+targetId+">, for "+banReason+".")
-				.setImage("https://cdn.discordapp.com/attachments/1375288772987715735/1406076443200585780/image0.gif?ex=68a1263b&is=689fd4bb&hm=689150c9c45f67ccc590301d409c605c74da212934fc52045cf82c8c415f2407&")
-			interaction.reply({embeds: [response]});
+			if(targetId === null ) {
+				const response = new EmbedBuilder()
+					.setColor(0x00FF00)
+					.setTitle("⚠ Killfaggot")
+					.setDescription("OwO, what faggot should I kill!")
+					.setImage("https://tenor.com/view/angry-cat-gif-25783770")
+				interaction.reply({embeds: [response]});
+			} else {
+				if(keepMessages == true || !keepMessages) keepMessages = 0;
+				else keepMessages = 604800;
+				interaction.guild.members.ban(targetId, { reason: banReason, deleteMessageSeconds: keepMessages });
+				const response = new EmbedBuilder()
+					.setColor(0x00FF00)
+					.setTitle("🟩 Success")
+					.setDescription("⛔ banned <@"+targetId+">, for "+banReason+".")
+					.setImage("https://cdn.discordapp.com/attachments/1375288772987715735/1406076443200585780/image0.gif?ex=68a1263b&is=689fd4bb&hm=689150c9c45f67ccc590301d409c605c74da212934fc52045cf82c8c415f2407&")
+				interaction.reply({embeds: [response]});
+			}
 		} else if(!targetUser.bannable) {
 			const response = new EmbedBuilder()
 				.setColor(0xFF0000)
