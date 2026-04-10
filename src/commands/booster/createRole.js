@@ -7,6 +7,12 @@ module.exports = {
 	async execute(interaction) {
 		const interactionUser = await interaction.guild.members.fetch(interaction.user.id);
 		const colorRole = await interactionUser.roles.color;
+    const boosterRole = await interaction.guild.roles.fetch('1375990589660598312');
+    const boosterRolePos = boosterRole.position
+    const colorRolePos = boosterRole.position + 1
+    console.log(boosterRole)
+    console.log(boosterRolePos)
+    console.log(colorRolePos)
 
     if(!interactionUser.premiumSince) {
       const response = new EmbedBuilder()
@@ -27,7 +33,7 @@ module.exports = {
         name: interactionUser.nickname+" ["+interactionUser.id+"]",
         colors: { primaryColor: "f47fff" },
         hoist: false,
-        position: 35,
+        position: colorRolePos,
         mentionable: false,
       });
       interactionUser.roles.add(customRole);
