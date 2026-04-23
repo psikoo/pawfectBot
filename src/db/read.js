@@ -5,7 +5,7 @@ async function getTop() {
 		SELECT author_id, COUNT(*) AS message_count FROM messages
 		GROUP BY author_id
 		ORDER BY message_count DESC 
-		LIMIT 25;
+		LIMIT 10;
 	`;
 	
 	try { 
