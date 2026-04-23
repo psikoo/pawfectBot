@@ -43,10 +43,10 @@ async function fetchChannelHistory(channel, interaction) {
 				if(message.author.bot) break;
 				if(!message.content || message.content == "" || message.content.trim().length == 0) break;
 				await storeMessage(message);
+				totalFetched++
 			}
 			// Set new start point
 			lastId = messages.last().id;
-			totalFetched += messages.size;
 			interaction.channel.send(`[CRAWLER] #${channel.name}: ${totalFetched} messages saved.`);
 			// Wait to avoid rate limit
 			await new Promise(resolve => setTimeout(resolve, 1500));
