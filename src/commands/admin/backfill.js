@@ -40,7 +40,9 @@ async function fetchChannelHistory(channel, interaction) {
 			if(messages.size === 0) break;
 			// Save to batch
 			for(const message of messages.values()) {
-				if(!message.author.bot || !message.content || message.content.trim().length === 0) await storeMessage(message);
+				if(message.author.bot) break;
+				if(!message.content || message.content == "" || message.content.trim().length == 0) break;
+				await storeMessage(message);
 			}
 			// Set new start point
 			lastId = messages.last().id;
