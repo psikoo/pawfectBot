@@ -2,7 +2,7 @@ const axios = require("axios");
 require("dotenv").config()
 const { EmbedBuilder } = require("discord.js");
 
-const customRole = require("./modals/customRole.js");
+const customRole = require("../modals/customRole.js");
 
 async function handleModal(interaction) {
 	if (interaction.customId === "customRoleModal") {

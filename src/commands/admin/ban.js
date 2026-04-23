@@ -39,7 +39,7 @@ module.exports = {
 					.setColor(0x00FF00)
 					.setTitle("🟩 Success")
 					.setDescription("⛔ banned <@"+targetId+">, for "+banReason+".")
-					.setImage("https://cdn.discordapp.com/attachments/1375288772987715735/1406076443200585780/image0.gif?ex=68a1263b&is=689fd4bb&hm=689150c9c45f67ccc590301d409c605c74da212934fc52045cf82c8c415f2407&")
+					.setImage("https://imgur.com/a/c8Igftf.gif")
 				interaction.reply({embeds: [response]});
 			}
 		} else if(!targetUser.bannable) {
