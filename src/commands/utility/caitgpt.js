@@ -1,0 +1,12 @@
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { getMessage } = require("../../db/read.js");
+
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName("caitgpt")
+		.setDescription("Generate me a message from pawfect"),
+	async execute(interaction) {
+		const row = await getMessage();
+		await interaction.reply({ content: row.content, allowedMentions: { parse: [] } });
+	},
+};
