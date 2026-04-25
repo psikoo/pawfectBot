@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription("Generate me a message from pawfect"),
 	async execute(interaction) {
 		const row = await getMessage();
-		console.log("caitgpt: "+row)
+		console.log("caitgpt: "+row[0].content);
 		await interaction.reply({ content: row[0].content, allowedMentions: { parse: [] } });
 	},
 };
