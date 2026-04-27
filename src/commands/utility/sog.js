@@ -6,7 +6,8 @@ module.exports = {
 		.setDescription("The soggening")
 		.addUserOption(option => option
 			.setName("user")
-			.setDescription("User to be sogged")),
+			.setDescription("User to be sogged")
+			.setRequired(true)),
 	async execute(interaction) {
 		let targetUser = interaction.options.getMember("user");
 
