@@ -9,11 +9,11 @@ module.exports = {
 			.setDescription("User to be sogged")
 			.setRequired(true))
 		.addStringOption(option => option
-			.setName("cat/dog")
+			.setName("CatOrDog")
 			.setDescription("choose between 'cat' or 'dog'")),
 	async execute(interaction) {
 		let targetUser = interaction.options.getMember("user");
-		let animal = interaction.options.getString("cat/dog");
+		let animal = interaction.options.getString("CatOrDog");
 
 		const dog = '[dog](https://tenor.com/view/water-spray-dog-hose-gif-5915950447361850547 "mwehehhe")';
 		const cat = '[cat](https://tenor.com/view/cat-doe-how-is-this-man-how-is-this-cat-he-be-starring-doe-wet-bath-gif-17193684 "mwehehhe")';
