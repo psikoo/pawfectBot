@@ -6,6 +6,7 @@ async function handleMessage(message) {
 	if (message.content.includes("01JTA6SWH4MA14NYBB72DYJQHZ")) message.reply("<@&1423819248022851664>:bangbang:");
 	if (message.content.includes(":3")) message.reply(":3");
 	if (message.content.includes("٤:")) message.reply("٤:");
+	if (message.content.includes("Ɛ:")) message.reply("Ɛ:");
 	await storeMessage(message);
 }
 

@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("disc
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName("killfaggot")
+		.setName("killdummy")
 		.setDescription("Ban a user")
 		.addUserOption(option => option
 			.setName("user")
@@ -27,8 +27,8 @@ module.exports = {
 			if(targetId === null ) {
 				const response = new EmbedBuilder()
 					.setColor(0x00FF00)
-					.setTitle("⚠ Killfaggot")
-					.setDescription("OwO, what faggot should I kill!")
+					.setTitle("⚠ Killdummy")
+					.setDescription("OwO, what dummy should I kill!")
 					.setImage("https://i.imgur.com/g5C3kq9.gif")
 				interaction.reply({embeds: [response]});
 			} else {
