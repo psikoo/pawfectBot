@@ -18,6 +18,27 @@ async function getTop() {
 	catch (err) { console.error('🟥 Error getting data:', err.stack); }
 }
 
+async function getRank(id) {
+	const queryText = `
+		WITH UserRanks AS (
+			SELECT author_id, COUNT(*) AS message_count, RANK() OVER (ORDER BY COUNT(*) DESC) as rank_position
+			FROM messages
+			WHERE author_id NOT IN (${banned})
+			GROUP BY author_id
+		)
+		SELECT author_id, message_count, rank_position
+		FROM UserRanks
+		WHERE author_id = '${id}';
+	`;
+	
+	try { 
+		const res = await db.query(queryText);
+		return res.rows;
+	} 
+	catch (err) { console.error('🟥 Error getting data:', err.stack); }
+}
+
+
 async function getMessage() {
 	const queryText = `
 		SELECT * FROM messages
@@ -35,5 +56,6 @@ async function getMessage() {
 
 module.exports = {
   getTop,
+	getRank,
 	getMessage
 };
