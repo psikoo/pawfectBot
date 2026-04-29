@@ -10,7 +10,7 @@ module.exports = {
 		if(rows.length === 0) return interaction.reply("No data found yet! :3");
 
 		const embed = new EmbedBuilder()
-			.setTitle("interaction.user.username")
+			.setTitle(interaction.user.username)
 			.setFooter({
 				text: "PawfectBot /rank",
 				iconURL: "https://cdn.discordapp.com/avatars/1400802530144944138/25826bb9713f5a6eb9fb73e75152a524.webp?size=32",
