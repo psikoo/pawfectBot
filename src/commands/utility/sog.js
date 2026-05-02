@@ -8,9 +8,15 @@ module.exports = {
 			.setName("user")
 			.setDescription("User to be sogged")
 			.setRequired(true))
-		.addStringOption(option => option
-			.setName("animal")
-			.setDescription("choose between 'cat' or 'dog'")),
+		.addStringOption((option) => option
+			.setName('animal')
+			.setDescription('choose a soggy animal')
+			.addChoices(
+				{ name: 'cat', value: 'cat' },
+				{ name: 'dog', value: 'dog' },
+				{ name: 'owl', value: 'owl' },
+			),
+		),
 	async execute(interaction) {
 		let targetUser = interaction.options.getMember("user");
 		let animal = interaction.options.getString("animal");
