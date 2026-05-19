@@ -22,7 +22,7 @@ module.exports = {
 		let animal = interaction.options.getString("animal");
 
 		const dog = '[dog](https://tenor.com/view/water-spray-dog-hose-gif-5915950447361850547 "mwehehhe")';
-		const cat = '[cat](https://tenor.com/view/cat-doe-how-is-this-man-how-is-this-cat-he-be-starring-doe-wet-bath-gif-17193684 "mwehehhe")';
+		const cat = '[cat](https://klipy.com/gifs/sogged "mwehehhe")';
 		const owl = '[owl](https://tenor.com/view/wet-owl-gif-5658056727679848013 "mwehehhe")';
 		let reply = "<@"+targetUser.id+"> get sogged dummy!! "
 
